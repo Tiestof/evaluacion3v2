@@ -11,7 +11,7 @@ import { addCircleOutline,camera, airplaneOutline, trash } from 'ionicons/icons'
 import { IonSearchbarCustomEvent } from '@ionic/core';
 import { DestinosService } from '../Servicios/destinos.service';
 import { Destinos } from '../Modelo/LlistaDestinos';
-import {Camera, CameraResultType, CameraSource} from '@capacitor/camera';
+import {Camera, Photo, CameraResultType, CameraSource} from '@capacitor/camera';
 
 @Component({
   selector: 'app-barra-busqueda',
@@ -36,6 +36,7 @@ export class BarraBusquedaComponent  implements OnInit {
   isModalEiminar: boolean = false;
   destinoSeleccionado: respuestaWSxid | null = null; // Destino seleccionado
   valorVuelo: string = ""; // Variable para almacenar el valor del vuelo ingresado por el usuario
+  foto : Photo|null = null;
   
   constructor(
     private servicio: OpenTripMapService,
@@ -127,7 +128,8 @@ export class BarraBusquedaComponent  implements OnInit {
 
     async tomaFoto(destino: Destinos) {
 
-      const image = await Camera.getPhoto({
+      //const image = await Camera.getPhoto({
+      this.foto = await Camera.getPhoto({
         quality: 100,
         allowEditing: true,
         correctOrientation: true,
@@ -137,7 +139,7 @@ export class BarraBusquedaComponent  implements OnInit {
       });
     
       // Reemplazar la imagen del destino seleccionado por la foto capturada
-      destino.imagen = 'data:image/jpeg;base64,' + image.base64String;
+      destino.imagen = 'data:image/jpeg;base64,' + this.foto.base64String;
     
       // Actualizar la lista de destinos
       await this.destinosService.guardarDestinos(this.listaDestinos);
