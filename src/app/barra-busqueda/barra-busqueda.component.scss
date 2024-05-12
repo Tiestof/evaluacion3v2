@@ -1,0 +1,33 @@
+// Seteamos el tamño de la imagen y su margen en pixeles.
+ion-img {
+    width: 100px; 
+    height: 70px; 
+    object-fit: cover; 
+    margin: 5px; 
+}
+
+ion-label {
+    width: 250; 
+  }
+
+ion-item ion-label {
+    
+    font-size: 12px; 
+
+}
+
+ion-item ion-label p {
+    
+    font-size: 10px; 
+    font-weight: bold;
+}
+
+ion-icon[name="airplane-outline"] {
+    margin-right: 10px; 
+  }
+
+ion-label{
+
+    font-size: 12px; 
+
+}
