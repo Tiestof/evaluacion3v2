@@ -1,0 +1,144 @@
+<ion-toolbar>
+  <ion-searchbar
+  [debounce]="2000" 
+  [(ngModel)]="busquedaStr"
+  placeholder="Ingrese destino"
+  (ionInput) = "handleInput($event)"
+  > <!-- Uso de debounce aca-->
+  </ion-searchbar>
+</ion-toolbar>
+
+<!--lista busqueda destinos vacacionales-->
+<ion-list>
+  <ion-item *ngFor ="let p of listaconsulta">
+    <ion-img      
+    [src]="p.image? p.image : imgDefecto"
+    style="width: 120px; height: 80px;"/>
+    
+    <ion-label style="margin-left: 5px;">
+      <strong>{{ p.address?.country }}</strong> - <em>{{ p.name }}</em>
+    </ion-label>
+    <ion-button 
+    size="small"
+    fill="clear"
+    (click)="agregarDestino(p)">
+    <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-list>
+
+<!--lista destinos vacacionales Seleccionados + Uso de PIPE-->
+<ion-list>
+  <ion-item *ngFor ="let p of listaDestinos"> 
+    <ion-img 
+      [src]="p.imagen"
+      ></ion-img>
+    <ion-label>
+      {{p.lugar}} - <br>
+      <p style="color: rgb(4, 4, 4); text-align: left">
+        {{p.pais}}
+      </p>
+    </ion-label>
+    <ion-icon size="small" name="airplane-outline"></ion-icon>
+    <ion-label>
+      {{p.valor | currency: 'CLP'}}  <!-- Uso de PIPE aca-->
+    </ion-label>
+
+    <ion-button 
+    size="small"
+    fill="clear"
+    (click)="tomaFoto(p)"> <ion-icon slot="end" name="camera"></ion-icon>
+  </ion-button>
+
+    <ion-button 
+    size="small"
+    fill="clear"
+    (click)="eliminarDestino(p)"> <ion-icon slot="end" name="trash"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-list>
+
+
+<!--Modal de para valor vuelo-->
+<ion-modal [isOpen]="isModalValVuelo">
+  <ng-template>
+    <ion-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto size="auto">  
+            <ion-button 
+            size="small" 
+            fill="clear"
+            (click)="closeModal()"
+            >Cancelar
+            </ion-button>
+          </ion-col>
+
+          <ion-col col-auto size="auto"></ion-col>
+          <ion-col col-auto size="auto">
+            <ion-text size="small">Valor vuelo ida y vuelta</ion-text>
+          </ion-col>
+          <ion-col col-auto size="auto"></ion-col>
+
+          <ion-col col-auto size="auto">
+            <ion-button size="small"
+            fill="clear" 
+            (click)="confirmarValor()"
+            >Aceptar
+          </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-input
+        [(ngModel)]="valorVuelo"
+        label="Stacked label" 
+        labelPlacement="stacked" 
+        label="Valor del Vuelo ida y Vuelta en USD"></ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!--Modal de eliminar destino-->
+<ion-modal [isOpen]="isModalEiminar">
+  <ng-template>
+    <ion-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto size="auto">  
+            <ion-button 
+            size="small" 
+            fill="clear"
+            (click)="closeModal()"
+            >Cancelar
+            </ion-button>
+          </ion-col>
+
+          <ion-col col-auto size="auto"></ion-col>
+          <ion-col col-auto size="auto">
+            <ion-text size="small">Eliminar el Destino </ion-text>
+          </ion-col>
+          <ion-col col-auto size="auto"></ion-col>
+
+          <ion-col col-auto size="auto">
+            <ion-button size="small"
+            fill="clear" 
+            (click)="eliminarValor()"
+            >Aceptar
+          </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
