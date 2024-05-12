@@ -90,7 +90,7 @@ export class BarraBusquedaComponent  implements OnInit {
       lugar: this.destinoSeleccionado?.name || "", 
       pais: this.destinoSeleccionado?.address?.country || "",
       valor: parseFloat(this.valorVuelo) || 0, // Convertimos el valor del modal a un número
-      imagen: this.destinoSeleccionado?.image || this.imgDefecto // validamos si hay una imagen si no asignamos la imagen por defecto
+      imagen: this.destinoSeleccionado?.preview?.source || this.imgDefecto // validamos si hay una imagen si no asignamos la imagen por defecto
     };
 
     this.listaDestinos.push(nuevoDestino);

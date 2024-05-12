@@ -1,7 +1,6 @@
 
-// Creamos la interfece para la primera interaccion con la API para obtener los lugares de interes  
-
-// Interfaz para una característica individual
+// Creamos la interfece para la primera interaccion con la API.
+// para obtener los lugares de interes y el Xid  
 export interface Feature {
     type: string; // "Feature"
     id: string;
@@ -9,13 +8,11 @@ export interface Feature {
     properties: FeatureProperties;
   }
   
-  // Interfaz para la geometría de una característica
   export interface Geometry {
     type: string; 
     coordinates: number[]; 
   }
   
-  // Interfaz para las propiedades de una característica
   export interface FeatureProperties {
     xid: string;
     name: string;
@@ -31,48 +28,47 @@ export interface Feature {
     features: Feature[];
   }
   
-  // Creamos la interfece para la segunda interaccion con la API para obtener los lugares de interesel detalle de cada lugar en base al xid unico.
+  // Creamos la interfece para la segunda interaccion con la API,
+  // para obtener los lugares de interesel detalle de cada lugar en base al xid unico.
   export interface respuestaWSxid {
       xid: string; // Identificador único (xid)
       name?: string; // Nombre del lugar
       address?: {
-        city?: string; // Ciudad
-        state?: string; // Estado o provincia
-        county?: string; // Municipio o distrito
+        city?: string; 
+        state?: string; 
+        county?: string; 
         country?: string; // País
-        pedestrian?: string; // Dirección detallada
-        country_code?: string; // Código de país
-        city_district?: string; // Distrito de la ciudad
+        pedestrian?: string; 
+        country_code?: string; 
+        city_district?: string; 
       };
-      rate?: string; // Calificación (en estrellas)
-      osm?: string; // Identificador de OpenStreetMap
+      rate?: string; 
+      osm?: string; 
       bbox?: {
-        lon_min?: number; // Longitud mínima del cuadro delimitador
-        lon_max?: number; // Longitud máxima del cuadro delimitador
-        lat_min?: number; // Latitud mínima del cuadro delimitador
-        lat_max?: number; // Latitud máxima del cuadro delimitador
+        lon_min?: number; lon_max?: number; 
+        lat_min?: number; lat_max?: number; 
       };
-      wikidata?: string; // Identificador de Wikidata
-      kinds?: string[]; // Categorías del lugar
+      wikidata?: string; 
+      kinds?: string[]; 
       sources?: {
-        geometry?: string; // Origen de los datos geométricos
-        attributes?: string[]; // Fuentes de atributos
+        geometry?: string; 
+        attributes?: string[]; 
       };
-      otm?: string; // URL de la tarjeta de OpenTripMap
-      wikipedia?: string; // URL de la página de Wikipedia
-      image?: string; // URL de la imagen principal
+      otm?: string; 
+      wikipedia?: string; 
+      image?: string; 
       preview?: {
         source?: string; // URL de la imagen de vista previa
-        height?: number; // Altura de la imagen de vista previa
-        width?: number; // Ancho de la imagen de vista previa
+        height?: number; 
+        width?: number; 
       };
       wikipedia_extracts?: {
-        title?: string; // Título del extracto de Wikipedia
-        text?: string; // Texto del extracto de Wikipedia
-        html?: string; // HTML del extracto de Wikipedia
+        title?: string; 
+        text?: string; 
+        html?: string; 
       };
       point?: {
-        lon?: number; // Longitud del punto central
-        lat?: number; // Latitud del punto central
+        lon?: number;
+        lat?: number;
       };
     }

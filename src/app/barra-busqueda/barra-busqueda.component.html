@@ -12,7 +12,7 @@
 <ion-list>
   <ion-item *ngFor ="let p of listaconsulta">
     <ion-img      
-    [src]="p.image? p.image : imgDefecto"
+    [src]="p.preview?.source? p.preview?.source : imgDefecto"
     style="width: 120px; height: 80px;"/>
     
     <ion-label style="margin-left: 5px;">
